@@ -48,8 +48,8 @@ private:
   };
 
   boost::scoped_ptr<Backdrop> backdrop_;
-  std::vector<std::vector<boost::shared_ptr<Sprite>>> background_tiles_;
-  std::vector<std::vector<Tile>> tiles_;
+  std::vector<std::vector<boost::shared_ptr<Sprite> >> background_tiles_;
+  std::vector<std::vector<Tile> > tiles_;
 };
 
 #endif // MAP_H_

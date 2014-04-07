@@ -49,7 +49,7 @@ private:
   units::Game height() const { return units::kHalfTile; }
 
   units::Game padding_;
-  std::vector<boost::shared_ptr<Sprite>> reversed_glyphs_;
+  std::vector<boost::shared_ptr<Sprite> > reversed_glyphs_;
 };
 
 #endif // NUMBER_SPRITE_H_

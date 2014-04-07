@@ -2,6 +2,7 @@
 #define PLAYER_H_
 
 #include "kinematics.h"
+#include "map_collidable.h"
 #include "sprite_state.h"
 #include "sprite.h"
 #include "sprite_state.h"
@@ -20,10 +21,11 @@ struct Projectile;
 struct Map;
 struct ParticleTools;
 
-struct Player : public Damageable {
-  Player(Graphics &graphics, units::Game x, units::Game y);
+struct Player : public Damageable,
+                private MapCollidable {
+  Player(Graphics &graphics, ParticleTools& particle_tools, units::Game x, units::Game y);
 
-  void update(units::MS elapsed_time_ms, const Map &map, ParticleTools& particle_tools);
+  void update(units::MS elapsed_time_ms, const Map &map);
   void draw(Graphics& graphics);
   void drawHUD(Graphics& graphics);
 
@@ -35,7 +37,7 @@ struct Player : public Damageable {
   void lookDown();
   void lookHorizontal();
 
-  void startFire(ParticleTools& particle_tools);
+  void startFire();
   void stopFire();
 
   void startJump();
@@ -49,7 +51,7 @@ struct Player : public Damageable {
   units::Game center_y() const { return kinematics_y_.position + units::kHalfTile; }
   boost::shared_ptr<DamageText> get_damage_text() { return damage_text_; }
 
-  std::vector<boost::shared_ptr<Projectile>> getProjectiles() {
+  std::vector<boost::shared_ptr<Projectile> > getProjectiles() {
     return polar_star_.getProjectiles();
   }
 
@@ -122,7 +124,10 @@ private:
   SpriteState getSpriteState();
 
   void updateX(units::MS elapsed_time_ms, const Map &map);
-  void updateY(units::MS elapsed_time_ms, const Map &map, ParticleTools& particle_tools);
+  void updateY(units::MS elapsed_time_ms, const Map &map);
+
+  void onCollision(MapCollidable::SideType side, bool is_delta_direction);
+  void onDelta(MapCollidable::SideType side);
 
   bool spriteIsVisible() const;
 
@@ -135,6 +140,7 @@ private:
     return on_ground() && intended_vertical_facing_ == DOWN ? HORIZONTAL : intended_vertical_facing_;
   }
 
+  ParticleTools& particle_tools_;
   Kinematics kinematics_x_, kinematics_y_;
   int acceleration_x_;
   HorizontalFacing horizontal_facing_;
@@ -152,7 +158,7 @@ private:
   GunExperienceHUD gun_experience_hud_;
   PolarStar polar_star_;
 
-  std::map<SpriteState, boost::shared_ptr<Sprite>> sprites_;
+  std::map<SpriteState, boost::shared_ptr<Sprite> > sprites_;
 };
 
 #endif // PLAYER_H_

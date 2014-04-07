@@ -166,8 +166,8 @@ void PolarStar::startFire(units::Game player_x,
   }
 }
 
-std::vector<boost::shared_ptr<Projectile>> PolarStar::getProjectiles() {
-  std::vector<boost::shared_ptr< ::Projectile>> projectiles;
+std::vector<boost::shared_ptr<Projectile> > PolarStar::getProjectiles() {
+  std::vector<boost::shared_ptr< ::Projectile> > projectiles;
   if (projectile_a_) projectiles.push_back(projectile_a_);
   if (projectile_b_) projectiles.push_back(projectile_b_);
 

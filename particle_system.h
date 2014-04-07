@@ -18,7 +18,7 @@ struct ParticleSystem {
   void draw(Graphics& graphics);
 
 private:
-  typedef std::set<boost::shared_ptr<Particle>> ParticleSet;
+  typedef std::set<boost::shared_ptr<Particle> > ParticleSet;
   ParticleSet particles_;
 };
 

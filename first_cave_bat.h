@@ -60,7 +60,7 @@ private:
   units::Degrees flight_angle_;
   HorizontalFacing facing_;
   boost::shared_ptr<DamageText> damage_text_;
-  std::map<SpriteState, boost::shared_ptr<Sprite>> sprites_;
+  std::map<SpriteState, boost::shared_ptr<Sprite> > sprites_;
 };
 
 #endif // FIRST_CAVE_BAT_H_

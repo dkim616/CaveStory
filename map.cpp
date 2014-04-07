@@ -16,10 +16,10 @@ Map* Map::createTestMap(Graphics &graphics) {
   const units::Tile num_rows = 15; // 15 * 32 = 480
   const units::Tile num_cols = 20; // 20 * 32 = 640
   // Ensure tiles_ and background_tiles_ is num_rows x num_cols in size
-  map->tiles_ = vector<vector<Tile>>(num_rows, vector<Tile>(num_cols, Tile()));
-  map->background_tiles_ = vector<vector<shared_ptr<Sprite>>>(
+  map->tiles_ = vector<vector<Tile> >(num_rows, vector<Tile>(num_cols, Tile()));
+  map->background_tiles_ = vector<vector<shared_ptr<Sprite> >>(
       num_rows, 
-      vector<shared_ptr<Sprite>>(num_cols, shared_ptr<Sprite>()));
+      vector<shared_ptr<Sprite> >(num_cols, shared_ptr<Sprite>()));
 
   shared_ptr<Sprite> sprite(new Sprite(
       graphics,

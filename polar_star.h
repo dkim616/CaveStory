@@ -34,7 +34,7 @@ struct PolarStar {
                  ParticleTools& particle_tools);
   void stopFire() {}
 
-  std::vector<boost::shared_ptr< ::Projectile>> getProjectiles();
+  std::vector<boost::shared_ptr< ::Projectile> > getProjectiles();
 
 private:
   typedef boost::tuple<HorizontalFacing, VerticalFacing> SpriteTuple;
@@ -82,7 +82,7 @@ private:
   void initializeSprite(Graphics& graphics, const SpriteState& sprite_state);
 
   units::GunLevel current_level_;
-  std::map<SpriteState, boost::shared_ptr<Sprite>> sprite_map_;
+  std::map<SpriteState, boost::shared_ptr<Sprite> > sprite_map_;
 
   boost::shared_ptr<Sprite> horizontal_projectiles_[units::kMaxGunLevel];
   boost::shared_ptr<Sprite> vertical_projectiles_[units::kMaxGunLevel];
