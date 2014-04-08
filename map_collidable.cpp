@@ -17,7 +17,9 @@ namespace {
 
     for (size_t i = 0; i < tiles.size(); ++i) {
       if (tiles[i].tile_type == Map::WALL_TILE) {
-        info = { true, tiles[i].row, tiles[i].col };
+        info.collided = true;
+        info.row = tiles[i].row;
+        info.col = tiles[i].col;
         break;
       }
     }

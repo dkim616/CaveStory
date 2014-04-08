@@ -84,9 +84,9 @@ Player::Player(Graphics &graphics, ParticleTools& particle_tools, units::Game x,
 }
 
 void Player::update(units::MS elapsed_time_ms, const Map& map) {
-  health_.update(elapsed_time_ms);
-  damage_text_->update(elapsed_time_ms);
-  damage_text_->setPosition(center_x(), center_y());
+  health_.update();
+  //damage_text_->update(elapsed_time_ms);
+  //damage_text_->setPosition(center_x(), center_y());
 
   walking_animation_.update();
 
@@ -149,11 +149,11 @@ void Player::lookHorizontal() {
 }
 
 void Player::startFire() {
-  polar_star_.startFire(kinematics_x_.position, 
-                        kinematics_y_.position, 
-                        horizontal_facing_, 
-                        vertical_facing(), 
-                        gun_up(), 
+  polar_star_.startFire(kinematics_x_.position,
+                        kinematics_y_.position,
+                        horizontal_facing_,
+                        vertical_facing(),
+                        gun_up(),
                         particle_tools_);
 }
 
@@ -185,7 +185,7 @@ void Player::takeDamage(units::HP damage) {
 }
 
 Rectangle Player::damageRectangle() const {
-  return Rectangle(kinematics_x_.position + kCollisionRectangle.boundingBox().left(),
+return Rectangle(kinematics_x_.position + kCollisionRectangle.boundingBox().left(),
                    kinematics_y_.position + kCollisionRectangle.boundingBox().top(),
                    kCollisionRectangle.boundingBox().width(),
                    kCollisionRectangle.boundingBox().height());

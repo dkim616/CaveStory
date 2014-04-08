@@ -77,7 +77,7 @@ private:
   typedef boost::tuple<MotionType, HorizontalFacing, VerticalFacing, StrideType> SpriteTuple;
 
   struct SpriteState : public SpriteTuple {
-    SpriteState(SpriteTuple& tuple) : SpriteTuple(tuple) {}
+    SpriteState(const SpriteTuple& tuple) : SpriteTuple(tuple) {}
 
     MotionType motion_type() const { return get<0>(); }
     HorizontalFacing horizontal_facing() const { return get<1>(); }
@@ -102,7 +102,7 @@ private:
   struct Health {
     Health(Graphics& graphics);
 
-    void update(units::MS elapsed_time);
+    void update();
     void draw(Graphics& graphics);
 
     // Returns true if we have died.
@@ -133,7 +133,7 @@ private:
 
   MotionType motionType() const;
   bool on_ground() const { return on_ground_; }
-  const bool gun_up() const {
+  bool gun_up() const {
     return motionType() == WALKING && walking_animation_.stride() != STRIDE_MIDDLE;
   }
   VerticalFacing vertical_facing() const {

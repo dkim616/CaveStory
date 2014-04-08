@@ -12,21 +12,21 @@ Map* Map::createTestMap(Graphics &graphics) {
   Map* map = new Map();
 
   map->backdrop_.reset(new FixedBackdrop(("bkBlue"), graphics));
-  
+
   const units::Tile num_rows = 15; // 15 * 32 = 480
   const units::Tile num_cols = 20; // 20 * 32 = 640
   // Ensure tiles_ and background_tiles_ is num_rows x num_cols in size
   map->tiles_ = vector<vector<Tile> >(num_rows, vector<Tile>(num_cols, Tile()));
-  map->background_tiles_ = vector<vector<shared_ptr<Sprite> >>(
-      num_rows, 
+  map->background_tiles_ = vector<vector<shared_ptr<Sprite> > >(
+      num_rows,
       vector<shared_ptr<Sprite> >(num_cols, shared_ptr<Sprite>()));
 
   shared_ptr<Sprite> sprite(new Sprite(
       graphics,
       "Stage/PrtCave",
-      units::tileToPixel(1), 
+      units::tileToPixel(1),
       0,
-      units::tileToPixel(1), 
+      units::tileToPixel(1),
       units::tileToPixel(1)));
 
   Tile tile(WALL_TILE, sprite);
@@ -44,23 +44,23 @@ Map* Map::createTestMap(Graphics &graphics) {
   shared_ptr<Sprite> chain_top(new Sprite(
       graphics,
       "Stage/PrtCave",
-      units::tileToPixel(11), 
+      units::tileToPixel(11),
       units::tileToPixel(2),
-      units::tileToPixel(1), 
+      units::tileToPixel(1),
       units::tileToPixel(1)));
   shared_ptr<Sprite> chain_middle(new Sprite(
       graphics,
       "Stage/PrtCave",
-      units::tileToPixel(12), 
+      units::tileToPixel(12),
       units::tileToPixel(2),
-      units::tileToPixel(1), 
+      units::tileToPixel(1),
       units::tileToPixel(1)));
   shared_ptr<Sprite> chain_bottom(new Sprite(
       graphics,
       "Stage/PrtCave",
-      units::tileToPixel(13), 
+      units::tileToPixel(13),
       units::tileToPixel(2),
-      units::tileToPixel(1), 
+      units::tileToPixel(1),
       units::tileToPixel(1)));
 
   map->background_tiles_[8][2] = chain_top;
@@ -70,7 +70,7 @@ Map* Map::createTestMap(Graphics &graphics) {
   return map;
 }
 
-std::vector<Map::CollisionTile> 
+std::vector<Map::CollisionTile>
     Map::getCollidingTiles(const Rectangle &rect) const {
   const units::Tile first_row = units::gameToTile(rect.top());
   const units::Tile last_row = units::gameToTile(rect.bottom());
@@ -112,7 +112,7 @@ void Map::draw(Graphics &graphics) const {
     for (size_t col = 0; col < tiles_[row].size(); ++col) {
       if (tiles_[row][col].sprite) {
         tiles_[row][col].sprite->draw(
-            graphics, 
+            graphics,
             units::tileToGame(col),
             units::tileToGame(row)
             );

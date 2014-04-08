@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include <boost\scoped_ptr.hpp>
-#include <boost\shared_ptr.hpp>
+#include <boost/scoped_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "backdrop.h"
 #include "units.h"
@@ -38,7 +38,7 @@ struct Map {
 
 private:
   struct Tile {
-    Tile(TileType tile_type = AIR_TILE, 
+    Tile(TileType tile_type = AIR_TILE,
          boost::shared_ptr<Sprite> sprite = boost::shared_ptr<Sprite>())
             : tile_type(tile_type),
               sprite(sprite) {}
@@ -48,7 +48,7 @@ private:
   };
 
   boost::scoped_ptr<Backdrop> backdrop_;
-  std::vector<std::vector<boost::shared_ptr<Sprite> >> background_tiles_;
+  std::vector<std::vector<boost::shared_ptr<Sprite> > > background_tiles_;
   std::vector<std::vector<Tile> > tiles_;
 };
 

@@ -1,10 +1,6 @@
 #ifndef FIRST_CAVE_BAT_H_
 #define FIRST_CAVE_BAT_H_
 
-#include <map>
-
-#include <boost\shared_ptr.hpp>
-
 #include "sprite_state.h"
 #include "units.h"
 #include "rectangle.h"
@@ -15,15 +11,15 @@ struct Graphics;
 struct Sprite;
 
 struct FirstCaveBat : public Damageable {
-  FirstCaveBat(Graphics &graphics, units::Game x, units::Game y);
+  FirstCaveBat(Graphics& graphics, units::Game x, units::Game y);
 
-  void draw(Graphics &graphics);
+  void draw(Graphics& graphics);
   bool update(units::MS elapsed_time, units::Game player_x);
 
   Rectangle damageRectangle() const {
     return Rectangle(x_ + units::kHalfTile,
                      y_ + units::kHalfTile,
-                     0, 
+                     0,
                      0);
   }
   Rectangle collisionRectangle() const {
@@ -35,7 +31,7 @@ struct FirstCaveBat : public Damageable {
 
   units::HP contactDamage() const;
   void takeDamage(units::HP damage) {
-    damage_text_->setDamage(damage); 
+    damage_text_->setDamage(damage);
     alive_ = false;
   }
 
@@ -46,12 +42,12 @@ struct FirstCaveBat : public Damageable {
 private:
   typedef boost::tuple<HorizontalFacing> SpriteTuple;
   struct SpriteState : public SpriteTuple {
-    SpriteState(SpriteTuple& tuple) : SpriteTuple(tuple) {}
+    SpriteState(const SpriteTuple& tuple) : SpriteTuple(tuple) {}
     HorizontalFacing horizontal_facing() const { return get<0>(); }
   };
-  
-  void initializeSprites(Graphics &graphics);
-  void initializeSprite(Graphics &graphics, const SpriteState &sprite_state);
+
+  void initializeSprites(Graphics& graphics);
+  void initializeSprite(Graphics& graphics, const SpriteState& sprite_state);
   SpriteState getSpriteState() const;
 
   const units::Game flight_center_y_;

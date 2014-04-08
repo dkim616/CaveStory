@@ -13,19 +13,19 @@ const units::MS kLifeTime = 600;
 const units::MS kFlashPeriod = 25;
 const units::Velocity kSpeed = 0.12f;
 
-HeadBumpParticle::HeadBumpParticle(Graphics& graphics, units::Game center_x, units::Game center_y) 
+HeadBumpParticle::HeadBumpParticle(Graphics& graphics, units::Game center_x, units::Game center_y)
     : center_x_(center_x),
       center_y_(center_y),
-      sprite_(graphics, 
-              "Caret", 
-              units::gameToPixel(kSourceX), 
-              units::gameToPixel(kSourceY), 
-              units::gameToPixel(kWidth), 
+      sprite_(graphics,
+              "Caret",
+              units::gameToPixel(kSourceX),
+              units::gameToPixel(kSourceY),
+              units::gameToPixel(kWidth),
               units::gameToPixel(kHeight)),
       timer_(kLifeTime, true /*start_active*/),
       particle_a_(0, static_cast<units::Degrees>(rand() % 360)),
-      max_offset_a_(static_cast<units::Game>(4 + (rand() % 16))),
       particle_b_(0, static_cast<units::Degrees>(rand() % 360)),
+      max_offset_a_(static_cast<units::Game>(4 + (rand() % 16))),
       max_offset_b_(static_cast<units::Game>(4 + (rand() % 16))) {}
 
 void HeadBumpParticle::draw(Graphics& graphics) {

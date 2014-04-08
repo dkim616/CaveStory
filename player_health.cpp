@@ -33,7 +33,7 @@ namespace {
 
 }
 
-Player::Health::Health(Graphics& graphics) 
+Player::Health::Health(Graphics& graphics)
     : damage_(0),
       damage_timer_(kDamageDelay),
       max_health_(6),
@@ -60,7 +60,7 @@ Player::Health::Health(Graphics& graphics)
                           units::gameToPixel(kHealthDamageSourceHeight)) {
 }
 
-void Player::Health::update(units::MS elapsed_time) {
+void Player::Health::update() {
   if (damage_ > 0 && damage_timer_.expired()) {
     current_health_ -= damage_;
     damage_ = 0;
@@ -76,8 +76,8 @@ void Player::Health::draw(Graphics& graphics) {
 
   health_fill_sprite_.draw(graphics, kHealthFillX, kHealthFillY);
 
-  NumberSprite::HUDNumber(graphics, 
-                          current_health_, 
+  NumberSprite::HUDNumber(graphics,
+                          current_health_,
                           kHealthNumberNumDigits).draw(graphics, kHealthNumberX, kHealthNumberY);
 }
 

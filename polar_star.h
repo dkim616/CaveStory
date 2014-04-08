@@ -26,10 +26,10 @@ struct PolarStar {
             units::Game x,
             units::Game y);
 
-  void startFire(units::Game player_x, 
-                 units::Game player_y, 
-                 HorizontalFacing horizontal_facing, 
-                 VerticalFacing vertical_facing, 
+  void startFire(units::Game player_x,
+                 units::Game player_y,
+                 HorizontalFacing horizontal_facing,
+                 VerticalFacing vertical_facing,
                  bool gun_up,
                  ParticleTools& particle_tools);
   void stopFire() {}
@@ -39,7 +39,7 @@ struct PolarStar {
 private:
   typedef boost::tuple<HorizontalFacing, VerticalFacing> SpriteTuple;
   struct SpriteState : public SpriteTuple{
-    SpriteState(SpriteTuple& tuple) : SpriteTuple(tuple) {}
+    SpriteState(const SpriteTuple& tuple) : SpriteTuple(tuple) {}
     HorizontalFacing horizontal_facing() const { return get<0>(); }
     VerticalFacing vertical_facing() const { return get<1>(); }
   };

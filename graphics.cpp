@@ -10,9 +10,9 @@ namespace {
 
 Graphics::Graphics() {
   screen_ = SDL_SetVideoMode(
-      units::tileToPixel(Game::kScreenWidth), 
-      units::tileToPixel(Game::kScreenHeight), 
-      kBitsPerPixel, 
+      units::tileToPixel(Game::kScreenWidth),
+      units::tileToPixel(Game::kScreenHeight),
+      kBitsPerPixel,
       0);
   SDL_ShowCursor(SDL_DISABLE);
 }
@@ -25,7 +25,7 @@ Graphics::~Graphics() {
 }
 
 Graphics::SurfaceID Graphics::loadImage(const std::string &file_name, bool black_is_transparent) {
-  const std::string file_path = config::getGraphicsQuality() == config::ORIGINAL_QUALITY ? 
+  const std::string file_path = config::getGraphicsQuality() == config::ORIGINAL_QUALITY ?
     "content/original_graphics/" + file_name + ".pbm" :
     "content/" + file_name + ".bmp";
   // if we have none loaded in the spritesheet
@@ -40,8 +40,8 @@ Graphics::SurfaceID Graphics::loadImage(const std::string &file_name, bool black
   return sprite_sheets_[file_path];
 }
 
-void Graphics::blitSurface(SurfaceID source, 
-                           SDL_Rect* source_rectangle, 
+void Graphics::blitSurface(SurfaceID source,
+                           SDL_Rect* source_rectangle,
                            SDL_Rect* destination_rectangle) {
   SDL_BlitSurface(source, source_rectangle, screen_, destination_rectangle);
 }
