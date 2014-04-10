@@ -17,12 +17,13 @@
 #include "gun_experience_hud.h"
 
 struct Graphics;
-struct Projectile;
 struct Map;
 struct ParticleTools;
+struct Pickup;
+struct Projectile;
 
 struct Player : public Damageable,
-                private MapCollidable {
+  private MapCollidable {
   Player(Graphics &graphics, ParticleTools& particle_tools, units::Game x, units::Game y);
 
   void update(units::MS elapsed_time_ms, const Map &map);
@@ -44,6 +45,7 @@ struct Player : public Damageable,
   void stopJump();
 
   void takeDamage(units::HP damage);
+  void collectPickup(const Pickup& pickup);
 
   Rectangle damageRectangle() const;
 
